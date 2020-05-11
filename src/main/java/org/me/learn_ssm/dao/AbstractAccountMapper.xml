@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.me.learn_ssm.dao.AbstractAccountMapper">
+    <select id="accountList" parameterType="int" resultType="Account">select id,name,money from account</select>
+    <insert id="setAccount" parameterType="Account">insert into account VALUES(#{id},#{name},#{money})</insert>
+</mapper>
