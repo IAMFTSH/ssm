@@ -16,9 +16,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>5.2.5.RELEASE</spring.version>
-
-    <!--spring.version版本不能太高-->
+    <spring.version>5.0.2.RELEASE</spring.version>
     <slf4j.version>1.7.30</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
     <shiro.version>1.2.3</shiro.version>
@@ -131,12 +129,12 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>1.7.30</version>
-      <scope>compile</scope>
-    </dependency>
+    <!--    <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-simple</artifactId>
+          <version>1.7.30</version>
+          <scope>compile</scope>
+        </dependency>-->
 
     <!-- log end -->
     <dependency>

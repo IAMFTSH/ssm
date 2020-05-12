@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.me.learn_ssm.dao.AppointmentDao">
+    <insert id="insertAppointment">
+        <!-- ignore 主键冲突，报错 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        INSERT ignore INTO appointment (book_id, student_id)
+        VALUES (#{bookId}, #{studentId})
+    </insert>
+
+    <select id="queryByKeyWithBook" resultType="Appointment">
+        <!-- 如何告诉MyBatis把结果映射到Appointment同时映射book属性 -->
+        /*Appointment对象包含了一个属性名为book的Book对象，那么可以使用"book.属性名"的方式来取值*/
+        <!-- 可以自由控制SQL -->
+        SELECT
+        a.book_id,
+        a.student_id,
+        a.appoint_time,
+        b.book_id "book.book_id",
+        b.`name` "book.name",
+        b.number "book.number"
+        FROM
+        appointment a
+        INNER JOIN book b ON a.book_id = b.book_id
+        WHERE
+        a.book_id = #{bookId}
+        AND a.student_id = #{studentId}
+    </select>
+    <select id="myListByKeyWithBoo" resultMap="Appointment">
+                SELECT
+        a.book_id,
+        a.student_id,
+        a.appoint_time,
+        b.book_id "book.book_id",
+        b.`name` ,
+        b.number
+        FROM
+        appointment a, book b
+        WHERE
+        a.book_id = #{bookId}
+        AND a.student_id = #{studentId} and a.book_id=b.book_id
+    </select>
+    <resultMap id="Appointment" type="Appointment">
+        <id property="bookId" column="book_id"/>
+        <result property="studentId" column="student_id"/>
+        <result property="appointTime" column="appoint_time"/>
+        <association property="book" javaType="book">
+            <id property="bookId" column="book_id"/>
+            <result property="name" column="name"/>
+            <result property="number" column="number"/>
+        </association>
+    </resultMap>
+</mapper>
