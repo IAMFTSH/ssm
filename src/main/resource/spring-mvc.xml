@@ -12,8 +12,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-
-
     <!--注释扫描-->
     <context:component-scan base-package="org.me.learn_ssm.controller"></context:component-scan>
 
@@ -23,11 +21,15 @@
         <property name="suffix" value=".html"/>
     </bean>
 
+    <bean class="org.me.learn_ssm.config.SwaggerConfig"></bean>
+
     <!--开启SpringMVC框架注释支持-->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
+
 
     <!--标记静态资源，避免被拦截-->  <!--刷新maven-->
-    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
-    <mvc:resources mapping="/ssm/**" location="/ssm/"></mvc:resources>
-    <mvc:resources mapping="/pages/**" location="/pages/"></mvc:resources>
+    <mvc:default-servlet-handler/>
+    <!--    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+        <mvc:resources mapping="/ssm/**" location="/ssm/"></mvc:resources>
+        <mvc:resources mapping="/pages/**" location="/pages/"></mvc:resources>-->
 </beans>
